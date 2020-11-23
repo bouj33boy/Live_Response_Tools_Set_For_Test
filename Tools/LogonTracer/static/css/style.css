@@ -1,0 +1,33 @@
+#loading {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  margin-top: -0.5em;
+  font-size: 4em;
+  color: #000;
+}
+
+#loading.loaded {
+  display: none;
+}
+
+table.floatThead-table {
+  border-top: none;
+  border-bottom: none;
+  background-color: #efefef;
+}
+
+.dropdown-menu {
+  z-index: 10000;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color:blue;
+}
+
+.my_svg {
+  height: 50px;
+  width: 190px;
+}
