@@ -1,3 +1,0 @@
-﻿ToolName,ToolPath,ToolArguments
-autoruns.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\,"""-a *"", ""-nobanner"", ""-o autoruns.csv"", ""-c"", ""-accepteula""'"
-hollows_hunter.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\,/uniqd
