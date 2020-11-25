@@ -12,3 +12,4 @@ procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Pro
 procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,"""-ma -x C:\Windows\Fdata\ cmd"""
 procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,"""-ma -x C:\Windows\Fdata\ powershell"""
 loki.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\loki\loki.exe,"""-l ./test-yara.txt -p C:\"""
+winpmemx64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\winpmem\winpmemx64.exe,"""C:\Windows\Fdata\physicalmem.raw"""
