@@ -1,3 +1,0 @@
-﻿ToolName,ToolPath,ToolArguments
-autorunsc.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\autorunsc\autorunsc.exe,"""-a *"", ""-nobanner"", ""-o autoruns.csv"", ""-c"", ""-accepteula"""
-hollows_hunter64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\hollows_hunter\hollows_hunter64.exe,/uniqd
