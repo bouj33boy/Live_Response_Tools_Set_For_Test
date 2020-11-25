@@ -6,5 +6,9 @@ velociraptor-v0.5.2-windows-amd64.exe,C:\ProgramData\Microsoft\Windows Defender
 Get-KerberosTicketGrantingTicket.ps1,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\kerberostickets\Get-KerberosTicketGrantingTicket.ps1,
 Get-SOHostData.ps1,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\sohostdata\Get-SOHostData.ps1,
 BLUESPAWN-client-x64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\bluespawn\BLUESPAWN-client-x64.exe,"""--hunt -a Cursory"""
-procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,
-loki.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\loki\loki.exe,"""loki.exe -l ./yara-test.txt -p C:\"""
+procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,"""-ma -x C:\Windows\Fdata\ dllhost"""
+procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,"""-ma -x C:\Windows\Fdata\ rundll32"""
+procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,"""-ma -x C:\Windows\Fdata\ csc"""
+procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,"""-ma -x C:\Windows\Fdata\ cmd"""
+procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,"""-ma -x C:\Windows\Fdata\ powershell"""
+loki.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\loki\loki.exe,"""-l ./test-yara.txt -p C:\"""
