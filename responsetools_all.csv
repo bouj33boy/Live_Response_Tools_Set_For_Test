@@ -1,6 +1,10 @@
 ﻿ToolName,ToolPath,ToolArguments
-Autoruns.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\autoruns\Autoruns.exe,"""-a *"", ""-nobanner"", ""-o autoruns.csv"", ""-c"", ""-accepteula""'"
-hollows_hunter64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\hollows_hunter\hollows_hunter64.exe,/uniqd
-Get-KerberosTicketGrantingTicket.ps1,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\kerberostickets\Get-KerberosTicketGrantingTicket.ps1,"Get-KerberosTicketGrantingTicket"
-Get-NtSystemInformation.ps1,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\ntsysteminfo\Get-NtSystemInformation.ps1,"Get-NtSystemInformation.ps1"
-velociraptor-v0.5.2-windows-amd64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\velociraptor\velociraptor-v0.5.2-windows-amd64.exe,""
+autorunsc.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\autorunsc\autorunsc.exe,"""-a *"", ""-nobanner"", ""-o autoruns.csv"", ""-c"", ""-accepteula"""
+hollows_hunter64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\hollows_hunter\hollows_hunter64.exe,/uniqd
+handle64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\handle\handle64.exe,
+velociraptor-v0.5.2-windows-amd64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\velociraptor\velociraptor-v0.5.2-windows-amd64.exe,"""-v artifacts collect Windows.KapeFiles.Targets --args WebBrowsers"""
+Get-KerberosTicketGrantingTicket.ps1,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\kerberostickets\Get-KerberosTicketGrantingTicket.ps1,
+Get-SOHostData.ps1,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\sohostdata\Get-SOHostData.ps1,
+BLUESPAWN-client-x64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\bluespawn\BLUESPAWN-client-x64.exe,"""--hunt -a Cursory"""
+procdump64.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\procdump\procdump64.exe,
+loki.exe,C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\responsetools\loki\loki.exe,"""loki.exe -l ./yara-test.txt -p C:\"""
