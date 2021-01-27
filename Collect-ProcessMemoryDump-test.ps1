@@ -1,35 +1,53 @@
-function ProcessMemoryDump {
 <#
 .DESCRIPTION
-This is basically a port of Matt Graeber's PowerSploit Out-MiniDump project.
+Port of PowerSploit Out-MiniDump project.
 One of the main issues with the PowerSploit project is that the Out-MiniDump function flags defender.
+This script offers a switch for ProcessName or ProcessId
 
-.PARAMETERS $Process
-You can use ONLY process name, currently, to identify the target process and save it in the parameter.
+.PARAMETERS $Option
+You can choose either ProcessName or ProcessId.
+-Option "ProcessName"
+
+.Parameter $ProcessNameInput
+You can choose the natural language name of the target process. 
+-ProcessNameInput 'calculator'
+
+.Prameter $ProcessIdInput
+You can choose the Process ID of the target process.
+-ProcessIdInput '16028'
 
 .EXAMPLE Local PowerShell
-Collect-ProcessMemoryDump -Process 'calculator' -DumpFilePath 'C:\Windows\FData'
+.\Collect-ProcessMemoryDump.ps1 -Option 'ProcessName' -ProcessNameInput 'calculator' -DumpFilePath 'C:\Windows\FData'
+.\Collect-ProcessMemoryDump-test.ps1 -Option 'ProcessId' -ProcessIdInput '16028' -DumpFilePath 'C:\Windows\FData'
 
 .EXAMPLE PSRemoting
 
+
 .EXAMPLE DATP LIVE RESPONSE
+run Collect-ProcessMemoryDump-test.ps1 -parameters "-Option ProcessName -ProcessNameInput ShellExperienceHost -DumpFilePath C:\Windows\FData"
+run Collect-ProcessMemoryDump-test.ps1 -parameters "-Option ProcessId -ProcessIdInput 5828 -DumpFilePath C:\Windows\FData"
 
 
 Authors: Josh Prager, Brandon Scullion
 
-.TODO
-Add switch to change between Name or ProcessId
 #>
 
     [CmdletBinding()]
     Param (
-        [Parameter(Position = 0, Mandatory = $True)]
-        #, ValueFromPipeline = $True
-        #        [System.Diagnostics.Process]
+        [Parameter(Mandatory = $True)]
+        [ValidateSet("ProcessId","ProcessName")]
         [string]
-        $Process,
+        $Option,
 
-        [Parameter(Position = 1)]
+        [Parameter(Mandatory = $False)]
+        [string]
+        $ProcessIdInput,
+
+        [Parameter(Mandatory = $False)]
+        [string]
+        $ProcessNameInput,
+
+        [Parameter(Mandatory = $False)]
         [String[]]
         $DumpFilePath
     )
@@ -54,25 +72,51 @@ Add switch to change between Name or ProcessId
                 } catch {
                 Write-Error "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
                 }
-        $ProcessComplete = (Get-Process -Name $Process)
-        $ProcessId = $ProcessComplete.Id
-        $ProcessName = $ProcessComplete.Name
-        $ProcessHandle = $ProcessComplete.Handle
-        $ProcessFileName = "$($ProcessName)_$($ProcessId).dmp"
-        $ProcessDumpPath = Join-Path $DumpFilePath $ProcessFileName    
+                Write-Debug -Message "We chose our folder path - '$DumpFilePath'"
 
-        $FileStream = New-Object IO.FileStream($ProcessDumpPath, [IO.FileMode]::Create)
+                switch($Option) {
+                    "ProcessName" {
+                    $ProcessComplete = (Get-Process -Name $ProcessNameInput)
+                    $ProcessId = $ProcessComplete.Id
+                    $ProcessName = $ProcessComplete.Name
+                    $ProcessHandle = $ProcessComplete.Handle
+                    $ProcessFileName = "$($ProcessName)_$($ProcessId).dmp"
+                    $ProcessDumpPath = Join-Path $DumpFilePath $ProcessFileName
+                            $FileStream = New-Object IO.FileStream($ProcessDumpPath, [IO.FileMode]::Create)
 
-        $Result = $processdumpwritedump.Invoke($null, @($ProcessHandle,
-                                                     $ProcessId,
-                                                     $FileStream.SafeFileHandle,
-                                                     $MiniDumpWithFullMemory,
-                                                     [IntPtr]::Zero,
-                                                     [IntPtr]::Zero,
-                                                     [IntPtr]::Zero))
+                            $Result = $processdumpwritedump.Invoke($null, @($ProcessHandle,
+                                                                         $ProcessId,
+                                                                         $FileStream.SafeFileHandle,
+                                                                         $MiniDumpWithFullMemory,
+                                                                         [IntPtr]::Zero,
+                                                                         [IntPtr]::Zero,
+                                                                         [IntPtr]::Zero))
 
-        $FileStream.Close()
+                            $FileStream.Close()
 
+                            Write-Debug -Message "We chose our Process Switch - '$ProcessComplete'"
+                }
+                "ProcessId" {
+                    $ProcessComplete = (Get-Process -Id $ProcessIdInput)
+                    $ProcessId = $ProcessComplete.Id
+                    $ProcessName = $ProcessComplete.Name
+                    $ProcessHandle = $ProcessComplete.Handle
+                    $ProcessFileName = "$($ProcessName)_$($ProcessId).dmp"
+                    $ProcessDumpPath = Join-Path $DumpFilePath $ProcessFileName
+                            $FileStream = New-Object IO.FileStream($ProcessDumpPath, [IO.FileMode]::Create)
+
+                            $Result = $processdumpwritedump.Invoke($null, @($ProcessHandle,
+                                                                         $ProcessId,
+                                                                         $FileStream.SafeFileHandle,
+                                                                         $MiniDumpWithFullMemory,
+                                                                         [IntPtr]::Zero,
+                                                                         [IntPtr]::Zero,
+                                                                         [IntPtr]::Zero))
+
+                            $FileStream.Close()
+                            }
+                            }
+                            Write-Debug -Message "We chose the ProcessID instead - '$ProcessId'"
         if (-not $Result)
         {
             $Exception = New-Object ComponentModel.Win32Exception
@@ -87,17 +131,7 @@ Add switch to change between Name or ProcessId
         else
         {
             Get-ChildItem $ProcessDumpPath
-            Write-Host "*******************************"
-            Write-Host "[i] Collection File for Module [$($args[0])] should be located on the host at '$ProcessDumpPath'"
-            Write-host "*******DATP LIVE RESPONSE NEXT COMMANDS*******"
-            Write-Host "[Command]: fileinfo $($ProcessDumpPath)"
-            Write-Host "[Command]: getfile $($ProcessDumpPath)"
-            Write-host "*******POWERSHELL REMOTING NEXT COMMANDS*******"
-            Write-Host "[Command]: copy-item $($ProcessDumpPath) -Destination "~\Downloads" -FromSession `$Session"
-            Write-Host "*******************************"
-
         }
     }
 
     END {}
-}
