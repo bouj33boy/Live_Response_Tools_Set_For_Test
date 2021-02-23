@@ -18,14 +18,29 @@ You can choose the Process ID of the target process.
 
 .EXAMPLE Local PowerShell
 .\Collect-ProcessMemoryDump.ps1 -Option 'ProcessName' -ProcessNameInput 'calculator' -DumpFilePath 'C:\Windows\FData'
-.\Collect-ProcessMemoryDump-test.ps1 -Option 'ProcessId' -ProcessIdInput '16028' -DumpFilePath 'C:\Windows\FData'
+.\Collect-ProcessMemoryDump.ps1 -Option 'ProcessId' -ProcessIdInput '16028' -DumpFilePath 'C:\Windows\FData'
 
 .EXAMPLE PSRemoting
+PS C:\Users\da> Invoke-Command -FilePath "C:\Users\da\Documents\Collect-ProcessMemoryDump.ps1" -Session $sessions
 
+cmdlet  at command pipeline position 1
+Supply values for the following parameters:
+Option: ProcessName
+ProcessNameInput: ShellExperienceHost
+DumpFilePath: C:\Windows\FData
+
+
+PS C:\Users\da> Invoke-Command -FilePath "C:\Users\da\Documents\Collect-ProcessMemoryDump.ps1" -Session $sessions
+
+cmdlet  at command pipeline position 1
+Supply values for the following parameters:
+Option: ProcessId
+ProcessIdInput: 2456
+DumpFilePath: C:\Windows\FData
 
 .EXAMPLE DATP LIVE RESPONSE
-run Collect-ProcessMemoryDump-test.ps1 -parameters "-Option ProcessName -ProcessNameInput ShellExperienceHost -DumpFilePath C:\Windows\FData"
-run Collect-ProcessMemoryDump-test.ps1 -parameters "-Option ProcessId -ProcessIdInput 5828 -DumpFilePath C:\Windows\FData"
+run Collect-ProcessMemoryDump.ps1 -parameters "-Option ProcessName -ProcessNameInput ShellExperienceHost -DumpFilePath C:\Windows\FData"
+run Collect-ProcessMemoryDump.ps1 -parameters "-Option ProcessId -ProcessIdInput 5828 -DumpFilePath C:\Windows\FData"
 
 
 Authors: Josh Prager, Brandon Scullion
